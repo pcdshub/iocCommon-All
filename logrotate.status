@@ -1,0 +1,2 @@
+logrotate state -- version 2
+"/reg/d/iocData/ioc-tst-opal1/iocInfo/ioc.log" 2017-1-27
