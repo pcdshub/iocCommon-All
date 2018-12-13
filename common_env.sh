@@ -12,7 +12,7 @@ else
     export EPICS_VERSION=R3.14.12-0.4.0
 fi
 # export PROCSERV="/reg/g/pcds/package/epics/3.14/extensions/R3.14.12/bin/$EPICS_HOST_ARCH/procServ --allow --ignore ^D^C --logstamp"
-export PROCSERV="/reg/g/pcds/pkg_mgr/release/procServ/2.7.0-1.1.0/$EPICS_HOST_ARCH/bin/procServ --allow --ignore ^D^C --logstamp"
+export PROCSERV="/reg/g/pcds/pkg_mgr/release/procServ/2.7.0-1.2.0/$EPICS_HOST_ARCH/bin/procServ --allow --ignore ^D^C --logstamp"
 export IOC_HOST=`hostname -s`
 export CA_BIN=/reg/g/pcds/package/epics/3.14/base/$EPICS_VERSION/bin/$EPICS_HOST_ARCH
 
