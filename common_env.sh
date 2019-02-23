@@ -1,20 +1,36 @@
 #!/bin/bash
-
 # Setup the environment needed for consistent launching of soft IOC's
-export EPICS_SITE_TOP=/reg/g/pcds/package/epics/3.14
-export IOC_DATA=/reg/d/iocData
-if [ X`which perl` == X ]; then
-    # We're cheating for linuxRT.
-    export EPICS_HOST_ARCH=rhel6-x86_64
-    export EPICS_VERSION=R3.14.12-0.4.0
-else
-    export EPICS_HOST_ARCH=$(${EPICS_SITE_TOP}/base/R3.14.12-0.4.0/startup/EpicsHostArch)
-    export EPICS_VERSION=R3.14.12-0.4.0
+
+# Set the common directory env variables
+if   [ -f  /usr/local/lcls/epics/config/common_dirs.sh ]; then
+	source /usr/local/lcls/epics/config/common_dirs.sh 
+elif [ -f  /reg/g/pcds/pyps/config/common_dirs.sh ]; then
+	source /reg/g/pcds/pyps/config/common_dirs.sh
+elif [ -f  /afs/slac/g/lcls/epics/config/common_dirs.sh ]; then
+	source /afs/slac/g/lcls/epics/config/common_dirs.sh
 fi
-# export PROCSERV="/reg/g/pcds/package/epics/3.14/extensions/R3.14.12/bin/$EPICS_HOST_ARCH/procServ --allow --ignore ^D^C --logstamp"
-export PROCSERV="/reg/g/pcds/pkg_mgr/release/procServ/2.7.0-1.2.0/$EPICS_HOST_ARCH/bin/procServ --allow --ignore ^D^C --logstamp"
+
+# Setup EPICS env
+source $SETUP_SITE_TOP/epicsenv-cur.sh
+
+PROCSERV_VERSION=${PROCSERV_VERSION=2.7.0-1.3.0}
+if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
+	CROSS_ARCH=arm-cortexa9_neon-linux-gnueabihf
+	pathmunge $PACKAGE_SITE_TOP/procServ/procServ-$PROCSERV_VERSION/install/$CROSS_ARCH/bin
+	PYTHON_VERSION=${PYTHON_VERSION=2.7.13}
+	pathmunge       $PACKAGE_SITE_TOP/python/python$PYTHON_VERSION/install/$CROSS_ARCH/bin
+	ldpathmunge     $PACKAGE_SITE_TOP/python/python$PYTHON_VERSION/install/$CROSS_ARCH/lib
+	pythonpathmunge $PACKAGE_SITE_TOP/python/python$PYTHON_VERSION/install/$CROSS_ARCH/lib/python2.7/site-packages
+elif [ -e $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin/procServ ]; then
+	pathmunge $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin
+fi
+export PROCSERV_EXE=`which procServ`
+if [ -n "$PROCSERV_EXE" ]; then
+	export PROCSERV="$PROCSERV_EXE --allow --ignore ^D^C --logstamp"
+else
+	echo "Warning: procServ path not found!"
+fi
 export IOC_HOST=`hostname -s`
-export CA_BIN=/reg/g/pcds/package/epics/3.14/base/$EPICS_VERSION/bin/$EPICS_HOST_ARCH
 
 # Get the creation time
 export CREATE_TIME=`date '+%m%d%Y_%H%M%S'`
@@ -49,6 +65,7 @@ else
 		$RUNUSER "mkdir -p $IOC_DATA/$IOC/archive"
 		$RUNUSER "mkdir -p $IOC_DATA/$IOC/iocInfo"
 		$RUNUSER "mkdir -p $IOC_DATA/$IOC/logs"
-		$RUNUSER "chmod ug+w -R $IOC_DATA/$IOC"
+		$RUNUSER "chgrp ps-ioc -R $IOC_DATA/$IOC"
+		$RUNUSER "chmod ug+rws -R $IOC_DATA/$IOC"
 	fi
 fi
