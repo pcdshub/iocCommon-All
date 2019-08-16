@@ -16,6 +16,7 @@ source $SETUP_SITE_TOP/epicsenv-cur.sh
 echo Adding SLAC procServ to PATH
 PROCSERV_VERSION=${PROCSERV_VERSION=2.8.0-1.0.0}
 if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
+	PROCSERV_VERSION=2.7.0-1.3.0
 	CROSS_ARCH=arm-cortexa9_neon-linux-gnueabihf
 	pathmunge $PACKAGE_SITE_TOP/procServ/procServ-$PROCSERV_VERSION/install/$CROSS_ARCH/bin
 elif [ -e $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin/procServ ]; then

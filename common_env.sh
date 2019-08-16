@@ -11,10 +11,15 @@ elif [ -f  /afs/slac/g/lcls/epics/config/common_dirs.sh ]; then
 fi
 
 # Setup EPICS env
-source $SETUP_SITE_TOP/epicsenv-cur.sh
+if [ `uname -m` = "armv7l" ]; then
+	source $SETUP_SITE_TOP/epicsenv-3.15.5-apalis-2.0.sh
+else
+	source $SETUP_SITE_TOP/epicsenv-cur.sh
+fi
 
 PROCSERV_VERSION=${PROCSERV_VERSION=2.8.0-1.0.0}
 if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
+	PROCSERV_VERSION=2.7.0-1.3.0
 	CROSS_ARCH=arm-cortexa9_neon-linux-gnueabihf
 	pathmunge $PACKAGE_SITE_TOP/procServ/procServ-$PROCSERV_VERSION/install/$CROSS_ARCH/bin
 	PYTHON_VERSION=${PYTHON_VERSION=2.7.13}
