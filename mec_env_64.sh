@@ -3,8 +3,8 @@
 # Setup the environment needed for consistent launching of soft IOC's
 export EPICS_SITE_TOP=/reg/g/pcds/package/epics/3.14
 export IOC_DATA=/reg/d/iocData/
-# export PROCSERV="/reg/g/pcds/package/procServ-2.4.0/procServ --allow --ignore ^D^C"
-export PROCSERV="/reg/g/pcds/package/epics/3.14/extensions/R3.14.12/bin/linux-x86_64/procServ --allow --ignore ^D^C --logstamp"
+export PROCSERV_EXE=/reg/g/pcds/package/epics/3.14/extensions/R3.14.12/bin/linux-x86_64/procServ 
+export PROCSERV="$PROCSERV_EXE --allow --ignore ^D^C --logstamp"
 export IOC_HOST=`hostname -s`
 export CA_BIN=/reg/g/pcds/package/epics/3.14/base/current/bin/linux-x86_64
 export IOC_USER=mecioc
