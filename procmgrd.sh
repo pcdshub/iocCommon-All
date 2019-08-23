@@ -56,9 +56,9 @@ launchProcMgrd procmgrd0 $(( BASEPORT ))
 
 # Start caRepeater.
 CAREPEATER=`which caRepeater`
-PROCSERV=`which procServ`
+PROCSERV_EXE=`which procServ`
 echo Launching caRepeater via procServ ...
-$PROCSERV --logfile $IOC_MGR_LOG_DIR/caRepeater.log --name caRepeater 30000 $CAREPEATER
+$PROCSERV_EXE --logfile $IOC_MGR_LOG_DIR/caRepeater.log --name caRepeater 30000 $CAREPEATER
 
 # Figure out the hutch configuration: fee, amo, sxr, xpp, ...
 cfg=`$IOC_COMMON/All/hostname_to_cfg.sh`
