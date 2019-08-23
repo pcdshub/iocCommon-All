@@ -1,23 +1,22 @@
-#==============================================================
-#
-#  Abs:  Soft IOC post-startup initialization (Production)
-#
-#  Name: post_linux.cmd
-#
-#  Facility: PCDS Controls
-#
-#  Auth: 27-Jul-2009, Bruce Hill (bhill)
-#  Rev:  dd-mmm-yyyy, Reviewer's Name (USERNAME)
-#			Based on soft_post_st.cmd from LCLS
-#--------------------------------------------------------------
-#  Mod:
-#       dd-mmm-yyyy, Firstname Lastname (USERNAME):
-#         comment
-#
-#==============================================================
-#
-# Let's do some post startup things:
-#
+#-==============================================================
+#-
+#-  Abs:  Soft IOC post-startup initialization (Production)
+#-  Name: post_linux.cmd
+#-
+#-  Facility: PCDS Controls
+#-
+#-  Auth: 27-Jul-2009, Bruce Hill (bhill)
+#-  Rev:  dd-mmm-yyyy, Reviewer's Name (USERNAME)
+#-			Based on soft_post_st.cmd from LCLS
+#---------------------------------------------------------------
+#-  Mod:
+#-       dd-mmm-yyyy, Firstname Lastname (USERNAME):
+#-         comment
+#-
+#-==============================================================
+#-
+#- Let's do some post startup things:
+#-
 # Let's Get EPICS version:
 iocshCmd("coreRelease > ${IOC_DATA}/${IOC}/iocInfo/IOC.epicsVersion")
 
@@ -44,7 +43,7 @@ iocshCmd("dbl '' 'RTYP DTYP SCAN INP OUT OMSL DOL TSE' >${IOC_DATA}/${IOC}/iocIn
 # Let's get scaling info
 iocshCmd("dbl '' 'RTYP DTYP SCAN HOPR LOPR DRVH DRVL EGUF EGUL LINR AOFF ASLO ESLO' >${IOC_DATA}/${IOC}/iocInfo/IOC.pvScale")
 
-#Let's get the remaining interesting PV fields:
+# Let's get the remaining interesting PV fields:
 iocshCmd("dbl '' 'RTYP DTYP SCAN ASG IOVA IVOV ADEL MDEL SMOO' >${IOC_DATA}/${IOC}/iocInfo/IOC.pvMisc")
 
 # CA report
