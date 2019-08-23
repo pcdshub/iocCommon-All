@@ -15,5 +15,5 @@ fi
 # Also sets up required PS1 prompt
 source /reg/d/iocCommon/All/iocManager_env.sh
 
-echo runWithIocEnv.sh: exec $*
+#echo runWithIocEnv.sh: exec $*
 exec $*
