@@ -44,7 +44,9 @@ if [ "$IOC_USER" == "" ]; then
 	echo Warning: Set IOC_USER env variable in your startup.cmd file before running common_env.sh
 else
 	# Run processes as the correct IOC userid
-        if [ -f /sbin/runuser ]; then
+	if [ "$IOC_USER" == "$USER" ]; then
+	    export RUNUSER="/bin/bash -c"
+	elif [ -f /sbin/runuser ]; then
 	    export RUNUSER="/sbin/runuser $IOC_USER -s /bin/bash --preserve-environment -c"
 	else
 	    export RUNUSER="su $IOC_USER -c"
