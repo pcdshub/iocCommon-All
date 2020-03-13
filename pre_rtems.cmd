@@ -3,7 +3,7 @@
 #  Abs:  IOC pre-startup initialization (Production)
 #
 #  Name: pre_rtems.cmd
-#
+# 
 #  Facility: PCDS Controls
 #
 #  Auth: 27-Jul-2009, Bruce Hill (bhill)
@@ -57,14 +57,8 @@ tmp_path_export_iocData	= pathSubstitute("/nfsexport/datapool/iocData/%H")
 # Do additional NFS mounts...
 # Note: /reg/d/iocCommon/hioc/$H is already mounted by the tftp boot script as /home 
 nfsMount( getenv("NFS_FILE_SYSTEM_DATA"), tmp_path_export_iocData, "/thisIocData" )
-#nfsMount( getenv("NFS_FILE_SYSTEM_EXE" ), "/nfsexport/pcds/package/epics/3.14/ioc", "/iocs" )
-#nfsMount( getenv("NFS_FILE_SYSTEM_EXE" ), "/nfsexport/datapool/pcds/package/epics/3.14/ioc", "/iocs" )
 nfsMount( getenv("NFS_FILE_SYSTEM_EXE" ), "/nfsexport/datapool/pcds/epics/ioc", "/iocs" )
-
-#nfsMount( getenv("NFS_HOME1" ), "/u2/users", "/home1" )
-#nfsMount( getenv("NFS_HOME1" ), "/nfsexport/datapool/home4", "/home1")
-#nfsMount( getenv("NFS_HOME2" ), "/u2/users", "/home2" )
-#nfsMount( getenv("NFS_HOME3" ), "/u2/users", "/home3" )
+nfsMount( getenv("NFS_FILE_SYSTEM_EXE" ), "/nfsexport/datapool/pcds/epics-dev", "/epics-dev" )
 
 # Create needed sub-directories
 mkdir( "/thisIocData/iocInfo",  0775 )
@@ -79,3 +73,4 @@ free( tmp_path_export_iocData )
 iocLogDisable=0
 
 #End of script
+
