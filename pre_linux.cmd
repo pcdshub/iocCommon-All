@@ -20,10 +20,21 @@
 epicsEnvSet("EPICS_TS_NTP_INET","psntp.slac.stanford.edu")
 
 # iocLogClient...
-epicsEnvSet("EPICS_IOC_LOG_PORT","7004")
-epicsEnvSet("EPICS_IOC_LOG_INET", "psloghost.pcdsn")
 epicsEnvSet("EPICS_IOC_LOG_FILE_LIMIT","1000000")
 epicsEnvSet("EPICS_IOC_LOG_FILE_COMMAND","")
+
+# iocLogClient: Send log messages to logstash:
+epicsEnvSet("EPICS_IOC_LOG_INET", "ctl-logsrv01.pcdsn")
+epicsEnvSet("EPICS_IOC_LOG_PORT", "7004")
+
+# The following prefix is *required* for logstash to know which IOC is sending 
+# the message.  This *cannot* be modified without changes to the logstash
+# configuration.
+iocLogPrefix("IOC=${IOC} ")
+
+# caPutLog: Send caPutLog messages to logstash:
+epicsEnvSet("EPICS_CAPUTLOG_HOST", "ctl-logsrv01.pcdsn")
+epicsEnvSet("EPICS_CAPUTLOG_PORT", "7011")
 
 # TODO: Need a way to conditionally set these based on the host so ioc-xcs-misc1 and others don't send CA traffic over fez
 # Channel Access...
