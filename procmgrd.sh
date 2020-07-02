@@ -12,6 +12,9 @@ elif [ -f  /reg/g/pcds/pyps/config/common_dirs.sh ]; then
 elif [ -f  /afs/slac/g/lcls/epics/config/common_dirs.sh ]; then
 	source /afs/slac/g/lcls/epics/config/common_dirs.sh
 fi
+if [ -z $IOC_COMMON ]; then
+	IOC_COMMON=/reg/d/iocCommon
+fi
 
 # Setup our path, so we can find our python, procServ, and procmgrd!
 echo source iocManager_env.sh ...

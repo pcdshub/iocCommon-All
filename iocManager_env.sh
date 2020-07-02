@@ -11,7 +11,12 @@ elif [ -f  /afs/slac/g/lcls/epics/config/common_dirs.sh ]; then
 fi
 
 # Setup EPICS env
-source $SETUP_SITE_TOP/epicsenv-cur.sh
+EPICS_HOST_ARCH=`$EPICS_SITE_TOP/base/R3.15.5-2.0/startup/EpicsHostArch`
+if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
+	source $SETUP_SITE_TOP/epicsenv-3.15.5-apalis-2.0.sh;
+else
+	source $SETUP_SITE_TOP/epicsenv-cur.sh;
+fi
 
 echo Adding SLAC procServ to PATH
 PROCSERV_VERSION=${PROCSERV_VERSION=2.8.0-1.0.0}

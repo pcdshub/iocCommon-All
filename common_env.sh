@@ -54,18 +54,20 @@ else
 
 	# Make sure the host iocData directory exists for the caRepeater log
 	if [ ! -d $IOC_DATA/$IOC_HOST ]; then
-		$RUNUSER "mkdir $IOC_DATA/$IOC_HOST"
+		$RUNUSER "mkdir -p $IOC_DATA/$IOC_HOST"
 		$RUNUSER "setfacl -d -m group:ps-ioc:rwx $IOC_DATA/$IOC_HOST"
 		$RUNUSER "setfacl    -m group:ps-ioc:rwx $IOC_DATA/$IOC_HOST"
-		$RUNUSER "mkdir -p $IOC_DATA/$IOC_HOST/iocInfo"
-		$RUNUSER "mkdir -p $IOC_DATA/$IOC_HOST/logs"
 	fi
+	$RUNUSER "mkdir -p $IOC_DATA/$IOC_HOST/archive"
+	$RUNUSER "mkdir -p $IOC_DATA/$IOC_HOST/autosave"
+	$RUNUSER "mkdir -p $IOC_DATA/$IOC_HOST/iocInfo"
+	$RUNUSER "mkdir -p $IOC_DATA/$IOC_HOST/logs"
 
 	# Make sure the soft ioc iocData directories exist and have the right permissions
 	if [ "$IOC" == "" ]; then
 		echo Warning: Set IOC env variable in your startup.cmd file before running common_env.sh
 	elif [ ! -d $IOC_DATA/$IOC ]; then
-		$RUNUSER "mkdir $IOC_DATA/$IOC"
+		$RUNUSER "mkdir -p $IOC_DATA/$IOC"
 		$RUNUSER "setfacl -d -m group:ps-ioc:rwx $IOC_DATA/$IOC"
 		$RUNUSER "setfacl    -m group:ps-ioc:rwx $IOC_DATA/$IOC"
 		$RUNUSER "mkdir -p $IOC_DATA/$IOC/autosave"

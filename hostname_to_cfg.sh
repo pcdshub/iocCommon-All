@@ -1,4 +1,7 @@
 #!/bin/sh
+if [ -z $IOC_COMMON ]; then
+	IOC_COMMON=/reg/d/iocCommon
+fi
 
 # Figure out the hutch configuration: fee, amo, sxr, xpp, ...
 IOC_HOST=`$IOC_COMMON/All/get_hostname.sh | tail -1`
