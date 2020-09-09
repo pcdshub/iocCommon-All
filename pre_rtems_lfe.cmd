@@ -4,4 +4,4 @@
 setenv ("NFS_FILE_SYSTEM_DATA","16910.2341@172.21.32.76")
 setenv ("NFS_FILE_SYSTEM_EXE", "16910.2341@172.21.32.88")
 
-. /home/All/pre_rtems.cmd
+< /home/All/pre_rtems.cmd
