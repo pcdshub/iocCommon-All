@@ -2,6 +2,9 @@
 if [ -z $IOC_COMMON ]; then
 	IOC_COMMON=/reg/d/iocCommon
 fi
+if [ -z $CONFIG_SITE_TOP ]; then
+	CONFIG_SITE_TOP=/reg/g/pcds/pyps/config
+fi
 
 # Figure out the hutch configuration: fee, amo, sxr, xpp, ...
 IOC_HOST=`$IOC_COMMON/All/get_hostname.sh | tail -1`
