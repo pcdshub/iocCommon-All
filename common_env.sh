@@ -13,6 +13,8 @@ fi
 # Setup EPICS env
 if [ `uname -m` = "armv7l" ]; then
     source $SETUP_SITE_TOP/epicsenv-3.15.5-apalis-2.0.sh
+elif uname -r | fgrep -w -s el5 > /dev/null; then
+	source $SETUP_SITE_TOP/epicsenv-7.0.2-2.0.sh
 else
     source $SETUP_SITE_TOP/epicsenv-cur.sh
 fi
