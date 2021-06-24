@@ -57,8 +57,7 @@ tmp_path_export_iocData	= pathSubstitute("/nfsexport/datapool/iocData/%H")
 # Do additional NFS mounts...
 # Note: /reg/d/iocCommon/hioc/$H is already mounted by the tftp boot script as /home 
 nfsMount( getenv("NFS_FILE_SYSTEM_DATA"), tmp_path_export_iocData, "/thisIocData" )
-nfsMount( getenv("NFS_FILE_SYSTEM_EXE" ), "/nfsexport/datapool/pcds/epics/ioc", "/iocs" )
-nfsMount( getenv("NFS_FILE_SYSTEM_EXE" ), "/nfsexport/datapool/pcds/epics-dev", "/epics-dev" )
+nfsMount( getenv("NFS_FILE_SYSTEM_EXE" ), "/nfsexport/datapool/iocs", "/iocs" )
 
 # Create needed sub-directories
 mkdir( "/thisIocData/iocInfo",  0775 )
