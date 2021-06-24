@@ -28,7 +28,11 @@ IOC_HOST=`$IOC_COMMON/All/get_hostname.sh | tail -1`
 
 IOC_MGR_LOG_DIR=$IOC_DATA/$IOC_HOST/logs
 mkdir -p    $IOC_MGR_LOG_DIR
-chmod g+rwx $IOC_MGR_LOG_DIR
+if [ `uname -m` = "armv7l" ]; then
+	$RUNUSER "chmod 0775  $IOC_MGR_LOG_DIR"
+else
+	$RUNUSER "chmod g+rwx $IOC_MGR_LOG_DIR"
+fi
 
 # Allow control connections from anywhere
 # ignore ^D so procmgrd doesn't terminate on ^D

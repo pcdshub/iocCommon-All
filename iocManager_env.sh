@@ -9,6 +9,12 @@ elif [ -f  /reg/g/pcds/pyps/config/common_dirs.sh ]; then
 elif [ -f  /afs/slac/g/lcls/epics/config/common_dirs.sh ]; then
 	source /afs/slac/g/lcls/epics/config/common_dirs.sh
 fi
+if [ -z "$EPICS_SITE_TOP" ]; then
+EPICS_SITE_TOP=/reg/g/pcds/epics
+fi
+if [ -z "$SETUP_SITE_TOP" ]; then
+SETUP_SITE_TOP=/reg/g/pcds/setup
+fi
 
 # Setup EPICS env
 EPICS_HOST_ARCH=`$EPICS_SITE_TOP/base/R3.15.5-2.0/startup/EpicsHostArch`
@@ -19,9 +25,13 @@ else
 fi
 
 echo Adding SLAC procServ to PATH
-PROCSERV_VERSION=${PROCSERV_VERSION=2.8.0-1.0.0}
+PROCSERV_VERSION=${PROCSERV_VERSION=2.8.0-1.2.0}
+if [ "$EPICS_HOST_ARCH" == "linux-x86" ]; then
+	PROCSERV_VERSION=2.8.0-1.0.0
+fi
 if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
-	PROCSERV_VERSION=2.7.0-1.3.0
+	#PROCSERV_VERSION=2.7.0-1.3.0
+	PROCSERV_VERSION=2.8.0-1.3.0
 	CROSS_ARCH=arm-cortexa9_neon-linux-gnueabihf
 	pathmunge $PACKAGE_SITE_TOP/procServ/procServ-$PROCSERV_VERSION/install/$CROSS_ARCH/bin
 elif [ -e $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin/procServ ]; then
@@ -41,3 +51,4 @@ fi
 export TZ=PST8PDT
 
 export PS1="> "
+echo environment ready for IocManager.
