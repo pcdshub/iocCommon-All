@@ -53,5 +53,11 @@ epicsEnvSet("EPICS_CAS_BEACON_PORT","")
 epicsEnvSet("EPICS_CAS_BEACON_PERIOD","5.0")
 epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "4000000")
 
+# Let's add this for pvaccess support.  If it's not compiled in, it can't hurt,
+# and if you really want it off, you can do that in the st.cmd after including
+# this.
+epicsEnvSet( "EPICS_PVA_AUTO_ADDR_LIST",         "TRUE" )
+epicsEnvSet( "EPICS_PVAS_AUTO_BEACON_ADDR_LIST", "TRUE" )
+
 # Enable ioc error logging
 setIocLogDisable 0
