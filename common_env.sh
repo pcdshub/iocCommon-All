@@ -19,12 +19,11 @@ else
     source $SETUP_SITE_TOP/epicsenv-cur.sh
 fi
 
-PROCSERV_VERSION=${PROCSERV_VERSION=2.8.0-1.2.0}
+PROCSERV_VERSION=${PROCSERV_VERSION=2.8.0-1.3.0}
 if [ "$EPICS_HOST_ARCH" == "linux-x86" ]; then
     PROCSERV_VERSION=2.8.0-1.0.0
 fi
 if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
-    #PROCSERV_VERSION=2.7.0-1.3.0
     PROCSERV_VERSION=2.8.0-1.3.0
     CROSS_ARCH=arm-cortexa9_neon-linux-gnueabihf
     pathmunge $PACKAGE_SITE_TOP/procServ/procServ-$PROCSERV_VERSION/install/$CROSS_ARCH/bin
