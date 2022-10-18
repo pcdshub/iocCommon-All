@@ -35,6 +35,7 @@ iocLogPrefix("IOC=${IOC} ")
 # caPutLog: Send caPutLog messages to logstash:
 epicsEnvSet("EPICS_CAPUTLOG_HOST", "ctl-logsrv01.pcdsn")
 epicsEnvSet("EPICS_CAPUTLOG_PORT", "7011")
+epicsEnvSet("EPICS_CA_PUT_LOG_ADDR", "$(EPICS_CAPUTLOG_HOST):$(EPICS_CAPUTLOG_PORT)"
 
 # TODO: Need a way to conditionally set these based on the host so ioc-xcs-misc1 and others don't send CA traffic over fez
 # Channel Access...
