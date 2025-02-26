@@ -10,6 +10,7 @@ fi
 
 # Enable jumbo packets
 if  [ -n "$IP_NAME" ]; then
+	echo "Enabling jumbo packets on $IP_NAME ..."
 	ip link set $IP_NAME mtu 9000
 fi
 

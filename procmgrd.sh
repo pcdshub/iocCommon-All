@@ -17,6 +17,7 @@ if [ -z $IOC_COMMON ]; then
 fi
 
 # Setup our path, so we can find our python, procServ, and procmgrd!
+export TOOLS_SITE_TOP=/cds/sw/tools
 echo source iocManager_env.sh ...
 source $IOC_COMMON/All/iocManager_env.sh
 
