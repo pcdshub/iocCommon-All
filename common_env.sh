@@ -26,6 +26,9 @@ fi
 if [ "$EPICS_HOST_ARCH" == "linux-x86_64" ]; then
     PROCSERV_VERSION=2.8.0-1.0.0
 fi
+if [ "$EPICS_HOST_ARCH" == "rhel9-x86_64" ]; then
+    PROCSERV_VERSION=2.8.0
+fi
 if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
     PROCSERV_VERSION=2.8.0-1.3.0
     CROSS_ARCH=arm-cortexa9_neon-linux-gnueabihf
@@ -36,6 +39,8 @@ if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
     pythonpathmunge $PACKAGE_SITE_TOP/python/python$PYTHON_VERSION/install/$CROSS_ARCH/lib/python2.7/site-packages
 elif [ -e $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin/procServ ]; then
     pathmunge $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin
+else
+    pathmunge $PACKAGE_SITE_TOP/procServ-$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin
 fi
 export PROCSERV_EXE=`which procServ`
 if [ -n "$PROCSERV_EXE" ]; then
