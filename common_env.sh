@@ -36,6 +36,8 @@ if [ "$EPICS_HOST_ARCH" == "linux-arm-apalis" ]; then
     pythonpathmunge $PACKAGE_SITE_TOP/python/python$PYTHON_VERSION/install/$CROSS_ARCH/lib/python2.7/site-packages
 elif [ -e $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin/procServ ]; then
     pathmunge $PSPKG_ROOT/release/procServ/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin
+else
+    pathmunge $PACKAGE_SITE_TOP/procServ-ioc/$PROCSERV_VERSION/$EPICS_HOST_ARCH/bin
 fi
 export PROCSERV_EXE=`which procServ`
 if [ -n "$PROCSERV_EXE" ]; then
