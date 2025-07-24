@@ -6,5 +6,5 @@ export IOC_USER=detioc
 export INSTR_GROUP=ps-det
 
 # Setup the environment needed for consistent launching of soft IOC's
-THIS_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+THIS_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 source "${THIS_DIR}"/common_env.sh
