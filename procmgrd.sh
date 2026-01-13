@@ -74,4 +74,5 @@ echo Using configuration $cfg.
 
 # Start all of our processes.
 echo Launching $IOC_HOST IOCs via procServ ...
-python $CONFIG_SITE_TOP/$cfg/iocmanager/startAll.py $cfg $IOC_HOST
+# python $CONFIG_SITE_TOP/$cfg/iocmanager/startAll.py $cfg $IOC_HOST
+python $PYPS_ROOT/apps/iocmanager/latest/startAll.py $cfg $IOC_HOST
