@@ -15,26 +15,24 @@ fi
 
 # If directory doesn't exist, fall back to using subnet from IP address
 if [ ! -d $CONFIG_SITE_TOP/$cfg ]; then
-	if [ -e /reg/common/tools/bin/netconfig ]; then
-		IOC_HOST_IP=`netconfig view $IOC_HOST | egrep "IP:" | sed -e "s/\s*IP:\s*\(\S\+\)\s*/\1/"`
-	else
-		IOC_HOST_IP=`/sbin/ifconfig | /bin/grep -w inet | head -n1 | sed -e 's/ *inet[^0-9]*\([0-9.]*\) .*/\1/'`
-	fi
+	IOC_HOST_IP=`/sbin/ifconfig | /bin/grep -w inet | head -n1 | sed -e 's/ *inet[^0-9]*\([0-9.]*\) .*/\1/'`
 	IOC_SUBNET=`echo $IOC_HOST_IP | cut -d. -f3`
 	case $IOC_SUBNET in
-		37) cfg=amo; ;;
-		35) cfg=las; ;;
-		68) cfg=cxi; ;;
-		58) cfg=det; ;;
-		36) cfg=fee; ;;
-		64) cfg=hpl; ;;
-		45) cfg=mec; ;;
-		62) cfg=mfx; ;;
-		39) cfg=sxr; ;;
+		36) cfg=ued; ;;
 		57) cfg=thz; ;;
-		42) cfg=tst; ;;
-		43) cfg=xcs; ;;
-		38) cfg=xpp; ;;
+		58) cfg=det; ;;
+		68|69|70) cfg=cxi; ;;
+		72|73|74) cfg=mfx; ;;
+		76|77|78) cfg=mec; ;;
+		80|81|82) cfg=xcs; ;;
+		84|85|86) cfg=xpp; ;;
+		88|89|90) cfg=lfe; ;;
+		92|93|94) cfg=kfe; ;;
+		132|133|134) cfg=tmo; ;;
+		136|137|138) cfg=txi; ;;
+		140|141|142) cfg=rix; ;;
+		148|149|150) cfg=tst; ;;
+		160|161|162) cfg=las; ;;
 	esac
 fi
 echo $cfg
