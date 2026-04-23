@@ -21,18 +21,18 @@ if [ ! -d $CONFIG_SITE_TOP/$cfg ]; then
 		36) cfg=ued; ;;
 		57) cfg=thz; ;;
 		58) cfg=det; ;;
-		68|69|70) cfg=cxi; ;;
-		72|73|74) cfg=mfx; ;;
-		76|77|78) cfg=mec; ;;
-		80|81|82) cfg=xcs; ;;
-		84|85|86) cfg=xpp; ;;
-		88|89|90) cfg=lfe; ;;
-		92|93|94) cfg=kfe; ;;
-		132|133|134) cfg=tmo; ;;
-		136|137|138) cfg=txi; ;;
-		140|141|142) cfg=rix; ;;
-		148|149|150) cfg=tst; ;;
-		160|161|162) cfg=las; ;;
+		68|69|70|71) cfg=cxi; ;;
+		72|73|74|75) cfg=mfx; ;;
+		76|77|78|79) cfg=mec; ;;
+		80|81|82|83) cfg=xcs; ;;
+		84|85|86|87) cfg=xpp; ;;
+		88|89|90|91) cfg=lfe; ;;
+		92|93|94|95) cfg=kfe; ;;
+		132|133|134|135) cfg=tmo; ;;
+		136|137|138|139) cfg=txi; ;;
+		140|141|142|143) cfg=rix; ;;
+		148|149|150|151) cfg=tst; ;;
+		160|161|162|163) cfg=las; ;;
 	esac
 fi
 echo $cfg
